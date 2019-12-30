@@ -5,7 +5,7 @@ function App() {
   return (
     <Router>
       <div>
-        <Route exact path="/signup" component={Signup}/>
+        <Route exact path="/" component={Signup}/>
       </div>
     </Router>
   );
