@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 class Signup extends Component {
   state = {
@@ -17,9 +18,24 @@ class Signup extends Component {
       console.log(this.state.username);
       event.preventDefault();
 
-      this.setState({ 
-          username: this.state.username,
-          password: this.state.password
+      axios.post("/", {
+        username: this.state.username,
+        password: this.state.password 
+      }).then(response => {
+          console.log(response)
+
+          if (response.data){
+              console.log("successful signup")
+              this.setState({ 
+                  redirectTo: "/login"
+              })
+          }
+          else {
+              console.log("Signup error")
+          }
+      }).catch(error => {
+          console.log("Signup server error")
+          console.log(error)
       })
   }
 
